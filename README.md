@@ -1,54 +1,67 @@
-### Facebook Video Downloader
+# Facebook Tools Suite
 
-Downloads videos from Facebook URLs to your Videos directory.
+A command-line Python toolkit that provides three utilities for interacting with Facebook content: downloading videos, finding user IDs, and looking up video details.
 
-1. Select option 1 from the main menu
-2. Enter the Facebook video URL
-3. The video will be downloaded to your Videos folder
+## What It Does
 
-### Facebook ID Finder
+The script runs an interactive menu in the terminal. The user picks one of three tools and follows the prompts. No configuration file is needed. All output appears directly in the terminal.
 
-Finds the numeric ID of a Facebook user from their username or profile URL.
+Tool 1 - Download Facebook Video: The user provides a Facebook video URL. The script calls yt-dlp internally to download the video and saves it to a Videos folder in the user's home directory. The folder is created automatically if it does not exist.
 
-1. Select option 2 from the main menu
-2. Enter a Facebook username (e.g., "zuck") or profile URL
-3. The tool will display the user's numeric Facebook ID
+Tool 2 - Find Facebook User ID: The user provides a Facebook username or profile URL. The script sends an HTTP GET request to that profile page with the requests library, then uses a regular expression to extract the numeric userID value embedded in the page source. The numeric ID is printed to the terminal.
 
-### Video Details Lookup
+Tool 3 - Lookup Video Details: The user provides a Facebook video URL. The script calls yt-dlp with the --dump-json flag to retrieve structured metadata for the video, parses the JSON response, and prints the title, uploader, upload date, duration, view count, available formats, thumbnail URL, and description.
 
-Fetches and displays detailed information about Facebook videos.
+## How It Works
 
-1. Select option 3 from the main menu
-2. Enter the Facebook video URL
-3. The tool will display information including:
-   - Title
-   - Uploader
-   - Upload date
-   - Duration
-   - View count
-   - Available formats
-   - Description
-   - Thumbnail URL
+The script is built entirely in Python. It uses the subprocess module to run yt-dlp as an external process, the requests module to fetch web pages, the re module for regular-expression matching, and the json module to parse yt-dlp output. The colorama library adds color to terminal output and pyfiglet renders the ASCII art logo on startup. The main loop shows the menu after each tool finishes and exits when the user chooses option 4 or presses q.
 
-## License
+## Requirements
 
-[License Information]
+- Python 3.7 or later
+- yt-dlp (install with: pip install yt-dlp)
+- requests (install with: pip install requests)
+- colorama (install with: pip install colorama)
+- pyfiglet (install with: pip install pyfiglet)
 
-## Author
+## How to Use
 
-EIRSVi
+1. Install the required packages listed above.
+2. Run the script: python fb_tools.py
+3. The EIRSVi logo appears and the main menu is displayed.
+4. Enter a number from 1 to 4 to select a tool.
+5. Follow the on-screen prompt to enter a URL or username.
+6. After each tool finishes, press Enter to return to the menu or q to quit.
 
-## Support
+Example for downloading a video:
+- Select option 1
+- Paste the Facebook video URL when prompted
+- The downloaded file appears in ~/Videos/
 
-- GitHub: [@eirsvi](https://github.com/eirsvi)
-- X: [@eirsvi](https://twitter.com/eirsvi)
-- YouTube: [EIRSVi Channel](https://youtube.com/eirsvi)
+Example for finding a user ID:
+- Select option 2
+- Enter zuck or https://www.facebook.com/zuck
+- The numeric Facebook ID is printed
 
-## Version History
+Example for video details:
+- Select option 3
+- Paste a Facebook video URL that contains /videos/ in the path
+- Metadata such as title, duration, and view count is printed
 
-- Current Version: 1.0.0
-- Release Date: [Date]
+## Where to Use It
+
+This tool runs on any system that supports Python 3 and a terminal: Linux, macOS, and Windows. It is intended for local use on a personal machine. It does not run as a server and does not expose any network interface.
+
+## Why Use It
+
+Facebook does not provide an official public API for downloading videos or retrieving user IDs from profile pages. This tool automates the manual steps a user would otherwise do in a browser, making the process faster and scriptable from the command line.
+
+## Owner
+
+Script authored and maintained by EIRSVi.
+
+Repository maintained by shiliaiwei. GitHub profile: https://github.com/shiliaiwei
 
 ## Disclaimer
 
-This tool is for educational purposes only. Users are responsible for complying with Facebook's terms of service when using this tool.
+This tool is for educational purposes only. Users are responsible for complying with Facebook's terms of service and applicable laws when using this tool.
