@@ -1,54 +1,37 @@
-### Facebook Video Downloader
+# Facebook Tools Suite
 
-Downloads videos from Facebook URLs to your Videos directory.
+A small Python command-line tool that can download public Facebook videos, find a profile numeric ID, and print video details.
 
-1. Select option 1 from the main menu
-2. Enter the Facebook video URL
-3. The video will be downloaded to your Videos folder
+## What it does
 
-### Facebook ID Finder
+- Download a Facebook video to your local Videos folder (uses yt-dlp)
+- Find a user's numeric Facebook ID from a username or profile URL
+- Display video details for a Facebook video URL (uses yt-dlp JSON output)
 
-Finds the numeric ID of a Facebook user from their username or profile URL.
+## How it works
 
-1. Select option 2 from the main menu
-2. Enter a Facebook username (e.g., "zuck") or profile URL
-3. The tool will display the user's numeric Facebook ID
+- Menu-based CLI with three options.
+- Download: runs yt-dlp via subprocess and saves to ~/Videos.
+- ID lookup: fetches the profile page and extracts userID with a regex.
+- Video details: runs yt-dlp --dump-json and prints selected fields.
 
-### Video Details Lookup
+## How to use
 
-Fetches and displays detailed information about Facebook videos.
+1. Install Python 3
+2. Install dependencies:
+   pip install yt-dlp requests pyfiglet colorama
+3. Run:
+   python fb_tools.py
+4. Pick an option (1 to 3) and follow the prompts.
 
-1. Select option 3 from the main menu
-2. Enter the Facebook video URL
-3. The tool will display information including:
-   - Title
-   - Uploader
-   - Upload date
-   - Duration
-   - View count
-   - Available formats
-   - Description
-   - Thumbnail URL
+## Where you can use it
 
-## License
+Run it locally on Windows, macOS, or Linux in a terminal.
 
-[License Information]
+## Notes
 
-## Author
+Educational use only. You are responsible for complying with Facebook terms and local laws.
 
-EIRSVi
+## Owner
 
-## Support
-
-- GitHub: [@eirsvi](https://github.com/eirsvi)
-- X: [@eirsvi](https://twitter.com/eirsvi)
-- YouTube: [EIRSVi Channel](https://youtube.com/eirsvi)
-
-## Version History
-
-- Current Version: 1.0.0
-- Release Date: [Date]
-
-## Disclaimer
-
-This tool is for educational purposes only. Users are responsible for complying with Facebook's terms of service when using this tool.
+GitHub user shiliaiwei: https://github.com/shiliaiwei
