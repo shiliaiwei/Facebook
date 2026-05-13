@@ -7,6 +7,7 @@ import requests
 import re
 import json
 import argparse
+import shutil
 
 # Initialize Colorama
 init(autoreset=True)
@@ -17,7 +18,7 @@ def print_colored_logo():
     logo = pyfiglet.figlet_format("EIRSVi", font="slant")
     
     # Center the logo in the terminal
-    terminal_width = os.get_terminal_size().columns
+    terminal_width = shutil.get_terminal_size().columns
     centered_logo = "\n".join(line.center(terminal_width) for line in logo.splitlines())
 
     # Colors for the gradient effect (cyber-like appearance)
@@ -40,7 +41,7 @@ def print_welcome():
     
     # Welcome message
     welcome_message = f"{Fore.LIGHTBLUE_EX}Welcome to the Facebook Tools Suite! \n"
-    terminal_width = os.get_terminal_size().columns
+    terminal_width = shutil.get_terminal_size().columns
     centered_message = welcome_message.center(terminal_width)
     print(centered_message)
 
@@ -131,6 +132,7 @@ def find_facebook_id():
 
     try:
         # FB Identification
+        print(f"{Fore.YELLOW}Fetching profile details, please wait...")
         byte_obj = b'"userID":"([0-9]+)"'
         id_req = re.compile(byte_obj)
         page = requests.get(url)
