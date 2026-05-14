@@ -96,7 +96,11 @@ def download_video():
     videos_dir = create_videos_directory()
     
     # Prompt user for the video URL
-    url = input(f"\n{Fore.LIGHTCYAN_EX}Enter the FB video URL: {Fore.RESET}")
+    url = input(f"\n{Fore.LIGHTCYAN_EX}Enter the FB video URL: {Fore.RESET}").strip()
+
+    if not url:
+        print(f"{Fore.LIGHTRED_EX}Error: No URL provided.")
+        return
 
     # Generate the output file name in the Videos directory
     output_file = os.path.join(videos_dir, '%(title)s.%(ext)s')
@@ -119,8 +123,12 @@ def find_facebook_id():
     print(f"{Fore.YELLOW}Example: {Fore.LIGHTYELLOW_EX}zuck {Fore.RESET}or {Fore.LIGHTYELLOW_EX}https://www.facebook.com/zuck")
     
     # Prompt for username or URL
-    username_input = input(f"\n{Fore.LIGHTCYAN_EX}Enter FB username or profile URL: {Fore.RESET}")
+    username_input = input(f"\n{Fore.LIGHTCYAN_EX}Enter FB username or profile URL: {Fore.RESET}").strip()
     
+    if not username_input:
+        print(f"{Fore.LIGHTRED_EX}Error: No username or profile URL provided.")
+        return
+
     # Extract username from URL if needed
     if "facebook.com/" in username_input:
         username = username_input.split("facebook.com/")[1].split("/")[0].split("?")[0]
@@ -155,12 +163,16 @@ def lookup_video_details():
     print(f"{Fore.YELLOW}Example URL: {Fore.LIGHTYELLOW_EX}https://www.facebook.com/zuck/videos/10101858403890501")
     
     # Prompt for video URL
-    url = input(f"\n{Fore.LIGHTCYAN_EX}Enter the Facebook video URL to lookup details: {Fore.RESET}")
+    url = input(f"\n{Fore.LIGHTCYAN_EX}Enter the Facebook video URL to lookup details: {Fore.RESET}").strip()
+
+    if not url:
+        print(f"{Fore.LIGHTRED_EX}Error: No URL provided.")
+        return
 
     # Validate that the URL is a video URL
-    if "/videos/" not in url:
-        print(f"{Fore.LIGHTRED_EX}Error: The URL provided does not appear to be a Facebook video URL.")
-        print(f"{Fore.YELLOW}A valid Facebook video URL should contain '/videos/' in the path.")
+    if not any(k in url for k in ["/videos/", "/watch", "/reel/"]):
+        print(f"{Fore.LIGHTRED_EX}Error: The URL provided does not appear to be a valid Facebook video URL.")
+        print(f"{Fore.YELLOW}A valid Facebook video URL should contain '/videos/', '/watch', or '/reel/' in the path.")
         print(f"{Fore.YELLOW}Example: https://www.facebook.com/username/videos/123456789")
         return
 
@@ -263,7 +275,7 @@ def display_menu():
     
     while True:
         try:
-            choice = input(f"\n{Fore.LIGHTCYAN_EX}Enter your choice (1-4): {Fore.RESET}")
+            choice = input(f"\n{Fore.LIGHTCYAN_EX}Enter your choice (1-4): {Fore.RESET}").strip()
             choice = int(choice)
             if 1 <= choice <= 4:
                 return choice
@@ -293,7 +305,7 @@ def main():
             break
         
         # Ask if the user wants to continue
-        continue_choice = input(f"\n{Fore.LIGHTCYAN_EX}Press Enter to return to the main menu or 'q' to quit: {Fore.RESET}")
+        continue_choice = input(f"\n{Fore.LIGHTCYAN_EX}Press Enter to return to the main menu or 'q' to quit: {Fore.RESET}").strip()
         if continue_choice.lower() == 'q':
             print(f"\n{Fore.LIGHTGREEN_EX}Thank you for using Facebook Tools Suite! Goodbye!")
             break
