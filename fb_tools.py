@@ -12,6 +12,10 @@ import shutil
 # Initialize Colorama
 init(autoreset=True)
 
+def clear_screen():
+    """Clear the terminal screen to reduce visual clutter."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def print_colored_logo():
     """Generate and display the EIRSVi logo with color effects."""
     # Generate ASCII art for the logo "EIRSVi"
@@ -92,15 +96,15 @@ def download_video():
     print(f"{Fore.YELLOW}This tool downloads videos from Facebook URLs or profiles.")
     print(f"{Fore.YELLOW}Example URL: {Fore.LIGHTYELLOW_EX}https://www.facebook.com/zuck/videos/10101858403890501")
     
-    # Create Videos directory and get its path
-    videos_dir = create_videos_directory()
-    
     # Prompt user for the video URL
     url = input(f"\n{Fore.LIGHTCYAN_EX}Enter the FB video URL: {Fore.RESET}").strip()
 
     if not url:
         print(f"{Fore.LIGHTRED_EX}Error: No URL provided.")
         return
+
+    # Create Videos directory and get its path only if a valid URL was provided
+    videos_dir = create_videos_directory()
 
     # Generate the output file name in the Videos directory
     output_file = os.path.join(videos_dir, '%(title)s.%(ext)s')
@@ -286,6 +290,8 @@ def display_menu():
 
 def main():
     """Main function to run the Facebook Tools Suite."""
+    # Clear screen initially
+    clear_screen()
     # Display welcome message
     print_welcome()
     
@@ -309,6 +315,11 @@ def main():
         if continue_choice.lower() == 'q':
             print(f"\n{Fore.LIGHTGREEN_EX}Thank you for using Facebook Tools Suite! Goodbye!")
             break
+
+        # Clear screen before returning to main menu
+        clear_screen()
+        # Optionally re-print welcome message or just let menu display
+        print_welcome()
 
 if __name__ == "__main__":
     try:

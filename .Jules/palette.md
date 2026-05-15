@@ -9,3 +9,7 @@
 ## 2024-05-24 - CLI Input Handling and URL Validation
 **Learning:** Failing to strip whitespace from user inputs or validate empty inputs leads to confusing errors later. Overly strict URL validation (like only checking for `/videos/`) can cause false positives for valid Facebook URLs (like `/watch` or `/reel/`).
 **Action:** Always strip CLI inputs, handle empty states gracefully with clear error messages, and ensure validation logic accurately reflects all valid input formats.
+
+## 2026-05-15 - Terminal visual clutter
+**Learning:** Endless scrolling output in CLI tools makes the interactive prompt harder to find and reduces clarity.
+**Action:** Always clear the terminal screen before returning to the main menu in a CLI to maintain focus.
