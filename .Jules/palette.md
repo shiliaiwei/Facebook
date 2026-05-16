@@ -9,3 +9,7 @@
 ## 2024-05-24 - CLI Input Handling and URL Validation
 **Learning:** Failing to strip whitespace from user inputs or validate empty inputs leads to confusing errors later. Overly strict URL validation (like only checking for `/videos/`) can cause false positives for valid Facebook URLs (like `/watch` or `/reel/`).
 **Action:** Always strip CLI inputs, handle empty states gracefully with clear error messages, and ensure validation logic accurately reflects all valid input formats.
+
+## 2026-05-16 - Add string-based quit commands in numeric menus
+**Learning:** Users often instinctively type 'q' or 'quit' to exit CLI applications, even when presented with a numeric menu. Failing on these inputs feels hostile.
+**Action:** Always support common string-based exit commands (like 'q', 'quit', 'exit') alongside numeric exit options in CLI menus.
