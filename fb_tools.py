@@ -275,14 +275,19 @@ def display_menu():
     
     while True:
         try:
-            choice = input(f"\n{Fore.LIGHTCYAN_EX}Enter your choice (1-4): {Fore.RESET}").strip()
+            choice = input(f"\n{Fore.LIGHTCYAN_EX}Enter your choice (1-4, or 'q' to quit): {Fore.RESET}").strip()
+
+            # Handle standard exit commands
+            if choice.lower() in ['q', 'quit', 'exit']:
+                return 4
+
             choice = int(choice)
             if 1 <= choice <= 4:
                 return choice
             else:
                 print(f"{Fore.LIGHTRED_EX}Invalid choice. Please enter a number between 1 and 4.")
         except ValueError:
-            print(f"{Fore.LIGHTRED_EX}Invalid input. Please enter a number.")
+            print(f"{Fore.LIGHTRED_EX}Invalid input. Please enter a number between 1 and 4, or 'q' to quit.")
 
 def main():
     """Main function to run the Facebook Tools Suite."""
