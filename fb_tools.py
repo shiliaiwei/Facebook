@@ -170,9 +170,9 @@ def lookup_video_details():
         return
 
     # Validate that the URL is a video URL
-    if not any(k in url for k in ["/videos/", "/watch", "/reel/"]):
+    if not any(k in url for k in ["/videos/", "/watch", "/reel/", "fb.watch"]):
         print(f"{Fore.LIGHTRED_EX}Error: The URL provided does not appear to be a valid Facebook video URL.")
-        print(f"{Fore.YELLOW}A valid Facebook video URL should contain '/videos/', '/watch', or '/reel/' in the path.")
+        print(f"{Fore.YELLOW}A valid Facebook video URL should contain '/videos/', '/watch', '/reel/', or 'fb.watch' in the URL.")
         print(f"{Fore.YELLOW}Example: https://www.facebook.com/username/videos/123456789")
         return
 
@@ -198,6 +198,8 @@ def lookup_video_details():
         upload_date = video_details.get("upload_date", "N/A")
         duration = video_details.get("duration_string", "N/A")
         view_count = video_details.get("view_count", "N/A")
+        if isinstance(view_count, int):
+            view_count = f"{view_count:,}"
         description = video_details.get("description", "N/A")
         thumbnail = video_details.get("thumbnail", "N/A")
         formats = video_details.get("formats", [])
@@ -275,14 +277,17 @@ def display_menu():
     
     while True:
         try:
-            choice = input(f"\n{Fore.LIGHTCYAN_EX}Enter your choice (1-4): {Fore.RESET}").strip()
-            choice = int(choice)
-            if 1 <= choice <= 4:
-                return choice
+            choice = input(f"\n{Fore.LIGHTCYAN_EX}Enter your choice (1-4, or 'q' to quit): {Fore.RESET}").strip()
+            if choice.lower() in ['q', 'quit', 'exit']:
+                return 4
+
+            choice_int = int(choice)
+            if 1 <= choice_int <= 4:
+                return choice_int
             else:
                 print(f"{Fore.LIGHTRED_EX}Invalid choice. Please enter a number between 1 and 4.")
         except ValueError:
-            print(f"{Fore.LIGHTRED_EX}Invalid input. Please enter a number.")
+            print(f"{Fore.LIGHTRED_EX}Invalid input. Please enter a number or 'q' to quit.")
 
 def main():
     """Main function to run the Facebook Tools Suite."""
