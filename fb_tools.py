@@ -96,10 +96,10 @@ def download_video():
     videos_dir = create_videos_directory()
     
     # Prompt user for the video URL
-    url = input(f"\n{Fore.LIGHTCYAN_EX}Enter the FB video URL: {Fore.RESET}").strip()
+    url = input(f"\n{Fore.LIGHTCYAN_EX}Enter the FB video URL (or press Enter to cancel): {Fore.RESET}").strip()
 
     if not url:
-        print(f"{Fore.LIGHTRED_EX}Error: No URL provided.")
+        print(f"{Fore.YELLOW}Operation cancelled. Returning to main menu.")
         return
 
     # Generate the output file name in the Videos directory
@@ -123,10 +123,10 @@ def find_facebook_id():
     print(f"{Fore.YELLOW}Example: {Fore.LIGHTYELLOW_EX}zuck {Fore.RESET}or {Fore.LIGHTYELLOW_EX}https://www.facebook.com/zuck")
     
     # Prompt for username or URL
-    username_input = input(f"\n{Fore.LIGHTCYAN_EX}Enter FB username or profile URL: {Fore.RESET}").strip()
+    username_input = input(f"\n{Fore.LIGHTCYAN_EX}Enter FB username or profile URL (or press Enter to cancel): {Fore.RESET}").strip()
     
     if not username_input:
-        print(f"{Fore.LIGHTRED_EX}Error: No username or profile URL provided.")
+        print(f"{Fore.YELLOW}Operation cancelled. Returning to main menu.")
         return
 
     # Extract username from URL if needed
@@ -163,10 +163,10 @@ def lookup_video_details():
     print(f"{Fore.YELLOW}Example URL: {Fore.LIGHTYELLOW_EX}https://www.facebook.com/zuck/videos/10101858403890501")
     
     # Prompt for video URL
-    url = input(f"\n{Fore.LIGHTCYAN_EX}Enter the Facebook video URL to lookup details: {Fore.RESET}").strip()
+    url = input(f"\n{Fore.LIGHTCYAN_EX}Enter the Facebook video URL to lookup details (or press Enter to cancel): {Fore.RESET}").strip()
 
     if not url:
-        print(f"{Fore.LIGHTRED_EX}Error: No URL provided.")
+        print(f"{Fore.YELLOW}Operation cancelled. Returning to main menu.")
         return
 
     # Validate that the URL is a video URL
@@ -275,14 +275,17 @@ def display_menu():
     
     while True:
         try:
-            choice = input(f"\n{Fore.LIGHTCYAN_EX}Enter your choice (1-4): {Fore.RESET}").strip()
-            choice = int(choice)
-            if 1 <= choice <= 4:
-                return choice
+            choice = input(f"\n{Fore.LIGHTCYAN_EX}Enter your choice (1-4) or 'q' to quit: {Fore.RESET}").strip()
+            if choice.lower() in ['q', 'quit', 'exit']:
+                return 4
+
+            choice_int = int(choice)
+            if 1 <= choice_int <= 4:
+                return choice_int
             else:
-                print(f"{Fore.LIGHTRED_EX}Invalid choice. Please enter a number between 1 and 4.")
+                print(f"{Fore.LIGHTRED_EX}Invalid choice. Please enter a number between 1 and 4, or 'q' to quit.")
         except ValueError:
-            print(f"{Fore.LIGHTRED_EX}Invalid input. Please enter a number.")
+            print(f"{Fore.LIGHTRED_EX}Invalid input. Please enter a number or 'q' to quit.")
 
 def main():
     """Main function to run the Facebook Tools Suite."""
