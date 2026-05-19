@@ -9,3 +9,7 @@
 ## 2024-05-24 - CLI Input Handling and URL Validation
 **Learning:** Failing to strip whitespace from user inputs or validate empty inputs leads to confusing errors later. Overly strict URL validation (like only checking for `/videos/`) can cause false positives for valid Facebook URLs (like `/watch` or `/reel/`).
 **Action:** Always strip CLI inputs, handle empty states gracefully with clear error messages, and ensure validation logic accurately reflects all valid input formats.
+
+## 2026-05-19 - Graceful Exit on Empty Inputs
+**Learning:** CLI tools that throw hostile red error messages (e.g., "Error: No URL provided.") when a user submits an empty input can make users feel penalized for simply changing their mind or wanting to back out of a menu option.
+**Action:** Treat empty inputs in sub-menus as a deliberate "Cancel/Back" action. Provide a friendly yellow message (e.g., "Operation cancelled. Returning to main menu.") and explicitly hint this in the prompt (e.g., "or press Enter to cancel").
