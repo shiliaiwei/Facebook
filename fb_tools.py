@@ -12,6 +12,10 @@ import shutil
 # Initialize Colorama
 init(autoreset=True)
 
+def clear_screen():
+    """Clear the terminal screen."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def print_colored_logo():
     """Generate and display the EIRSVi logo with color effects."""
     # Generate ASCII art for the logo "EIRSVi"
@@ -289,7 +293,8 @@ def display_menu():
 
 def main():
     """Main function to run the Facebook Tools Suite."""
-    # Display welcome message
+    # Clear screen initially and display welcome message
+    clear_screen()
     print_welcome()
     
     while True:
@@ -312,6 +317,10 @@ def main():
         if continue_choice.lower() == 'q':
             print(f"\n{Fore.LIGHTGREEN_EX}Thank you for using Facebook Tools Suite! Goodbye!")
             break
+
+        # Clear screen and re-display welcome message for the next iteration
+        clear_screen()
+        print_welcome()
 
 if __name__ == "__main__":
     try:
