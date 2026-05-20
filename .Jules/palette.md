@@ -13,3 +13,7 @@
 ## 2026-05-19 - Graceful Exit on Empty Inputs
 **Learning:** CLI tools that throw hostile red error messages (e.g., "Error: No URL provided.") when a user submits an empty input can make users feel penalized for simply changing their mind or wanting to back out of a menu option.
 **Action:** Treat empty inputs in sub-menus as a deliberate "Cancel/Back" action. Provide a friendly yellow message (e.g., "Operation cancelled. Returning to main menu.") and explicitly hint this in the prompt (e.g., "or press Enter to cancel").
+
+## 2026-05-19 - Reducing cognitive load with CLI screen clears
+**Learning:** Endless scrolling in CLI menus quickly leads to a cluttered terminal, making it difficult for users to track where they are or focus on the current task.
+**Action:** Implement screen clearing (e.g., `os.system('cls' if os.name == 'nt' else 'clear')`) between distinct task states and when looping back to the main menu to maintain a clean, focused workspace and reduce cognitive load.
