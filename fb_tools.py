@@ -16,7 +16,7 @@ def clear_screen():
     """Clear the terminal screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def print_colored_logo():
+def print_colored_logo(animate=True):
     """Generate and display the EIRSVi logo with color effects."""
     # Generate ASCII art for the logo "EIRSVi"
     logo = pyfiglet.figlet_format("EIRSVi", font="slant")
@@ -33,15 +33,16 @@ def print_colored_logo():
     for i, char in enumerate(centered_logo):
         if char.strip():  # Apply color only to non-space characters
             print(colors[i % len(colors)] + char, end='', flush=True)
-            time.sleep(0.01)  # Slight delay to create a glowing effect
+            if animate:
+                time.sleep(0.01)  # Slight delay to create a glowing effect
         else:
             print(char, end='', flush=True)
     print("\n")  # New line after the logo
 
-def print_welcome():
+def print_welcome(animate=True):
     """Display welcome message and tool information."""
     # Call the function to print the colored EIRSVi logo
-    print_colored_logo()
+    print_colored_logo(animate)
     
     # Welcome message
     welcome_message = f"{Fore.LIGHTBLUE_EX}Welcome to the Facebook Tools Suite! \n"
@@ -295,7 +296,7 @@ def main():
     """Main function to run the Facebook Tools Suite."""
     # Clear screen initially and display welcome message
     clear_screen()
-    print_welcome()
+    print_welcome(animate=True)
     
     while True:
         # Display menu and get user choice
@@ -320,7 +321,7 @@ def main():
 
         # Clear screen and re-display welcome message for the next iteration
         clear_screen()
-        print_welcome()
+        print_welcome(animate=False)
 
 if __name__ == "__main__":
     try:
