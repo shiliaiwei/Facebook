@@ -17,3 +17,7 @@
 ## 2026-05-19 - Reducing cognitive load with CLI screen clears
 **Learning:** Endless scrolling in CLI menus quickly leads to a cluttered terminal, making it difficult for users to track where they are or focus on the current task.
 **Action:** Implement screen clearing (e.g., `os.system('cls' if os.name == 'nt' else 'clear')`) between distinct task states and when looping back to the main menu to maintain a clean, focused workspace and reduce cognitive load.
+
+## 2026-05-21 - Skip decorative animations on repeated UI renders
+**Learning:** Startup animations (like glowing ASCII logos) create a great first impression, but executing `time.sleep()` delays every time a user returns to a main menu introduces significant, unnecessary friction (over a second of blocking delay).
+**Action:** Always provide a way to bypass or skip decorative animations after the initial application load to maintain a snappy, responsive feel during continued usage.
